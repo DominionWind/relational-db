@@ -1,0 +1,32 @@
+--INSERT
+
+INSERT INTO ORDERS
+VALUES(1001, 'tool2212', 140, TO_DATE('2017/05/03 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), TO_DATE('2007/05/03 23:02:44', 'yyyy/mm/dd hh24:mi:ss'));
+
+INSERT INTO ORDERS
+VALUES(1002, 'toy333', 140, TO_DATE('2017/05/03 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), TO_DATE('2007/05/03 23:02:44', 'yyyy/mm/dd hh24:mi:ss'));
+
+INSERT INTO ORDERS
+VALUES(1003, 'smallcar000', 140, TO_DATE('2017/05/03 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), TO_DATE('2007/05/03 23:02:44', 'yyyy/mm/dd hh24:mi:ss'));
+
+INSERT INTO ORDERS
+VALUES(1004, 'pppp', 222, TO_DATE('2016/05/03 21:02:44', 'yyyy/mm/dd hh24:mi:ss'), TO_DATE('2016/05/03 23:02:44', 'yyyy/mm/dd hh24:mi:ss'));
+
+--SELECT
+
+SELECT * FROM ORDERS;
+SELECT * FROM ORDERS WHERE PRICE = 140;
+SELECT * FROM ORDERS WHERE product_name = 'toy333' AND PRICE < 200 AND PRICE > 100;
+SELECT * FROM ORDERS WHERE product_name = 'ttttt' OR PRICE < 200;
+
+--DELETE
+
+DELETE FROM ORDERS;
+DELETE FROM ORDERS
+WHERE product_name = 'ooooooooooooo';
+
+--UPDATE
+
+UPDATE ORDERS SET price = 230 WHERE id = 1001;
+UPDATE ORDERS SET price = 250;
+UPDATE ORDERS SET product_name = null WHERE ID = 1001;
