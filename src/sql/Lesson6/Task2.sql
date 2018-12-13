@@ -1,0 +1,65 @@
+CREATE TABLE ForumCategories(
+ID NUMBER,
+CONSTRAINT ForumCategories_ID PRIMARY KEY(ID),
+title NVARCHAR2(64),
+description CLOB,
+ForumDate TIMESTAMP,
+ip NVARCHAR2 (20)
+);
+
+CREATE TABLE ForumSubcategories (
+ID NUMBER,
+CONSTRAINT ForumSubcategories_ID PRIMARY KEY(ID),
+IDCategory NUMBER,
+CONSTRAINT ForumCategories_FK FOREIGN KEY(IDCategory) REFERENCES ForumCategories(ID),
+title NVARCHAR2(45),
+description CLOB,
+ForumDate TIMESTAMP,
+ip NVARCHAR2 (20)
+);
+
+CREATE TABLE Users(
+ID NUMBER,
+CONSTRAINT Users_ID PRIMARY KEY(ID),
+nick NVARCHAR2(16),
+pasword NVARCHAR2(128),
+email NVARCHAR2(128),
+UserdDate TIMESTAMP,
+karma DECIMAL(9,2),
+ip NVARCHAR2 (20)
+);
+
+CREATE TABLE forumPosts(
+ID NUMBER,
+CONSTRAINT forumPosts_ID PRIMARY KEY(ID),
+IDSubcategories NUMBER,
+CONSTRAINT IDSubcategories_FK FOREIGN KEY(IDSubcategories) REFERENCES ForumSubcategories(ID),
+IDUser NUMBER,
+CONSTRAINT IDUser_FK FOREIGN KEY(IDUser) REFERENCES Users(ID),
+parentPost NUMBER,
+CONSTRAINT parentPost FOREIGN KEY (parentPost) REFERENCES forumPosts(ID),
+title NVARCHAR2(90),
+content CLOB,
+isPoll BOOLEAN,
+PostDate TIMESTAMP,
+ip NVARCHAR2 (20)
+);
+
+CREATE TABLE forumsPollsOptions(
+ID NUMBER,
+CONSTRAINT forumsPollsOptions_ID PRIMARY KEY(ID),
+IDPost NUMBER,
+title NVARCHAR2(64),
+PollsOptionsDate TIMESTAMP
+);
+
+CREATE TABLE forumsPollsOptionsVotes(
+ID NUMBER,
+CONSTRAINT forumsPollsOptionsVotes_ID PRIMARY KEY(ID),
+IDPoolOption NUMBER,
+CONSTRAINT IDPoolOption_FK FOREIGN KEY(IDPoolOption) REFERENCES forumsPollsOptions(ID),
+IDUser NUMBER,
+CONSTRAINT IDUser_FK FOREIGN KEY (IDUser) REFERENCES Users(ID),
+PollsOptionsVotesDate TIMESTAMP,
+ip NVARCHAR2 (20)
+);
