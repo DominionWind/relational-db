@@ -1,4 +1,4 @@
-package Lesson6;
+package Lesson6.Products;
 
 import java.util.Date;
 

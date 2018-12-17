@@ -1,4 +1,4 @@
-package Lesson6;
+package Lesson6.Products;
 
 public class Categories {
     private long ID;
